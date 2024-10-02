@@ -513,6 +513,7 @@ const DeadFilesDetector = struct {
             "go_bindings.zig",
             "node_bindings.zig",
             "java_bindings.zig",
+            "ruby_bindings.zig",
             "build.zig",
             "build_multiversion.zig",
         };

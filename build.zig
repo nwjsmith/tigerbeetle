@@ -70,6 +70,7 @@ pub fn build(b: *std.Build) !void {
         .clients_go = b.step("clients:go", "Build Go client shared library"),
         .clients_java = b.step("clients:java", "Build Java client shared library"),
         .clients_node = b.step("clients:node", "Build Node client shared library"),
+        .clients_ruby = b.step("clients:ruby", "Build Ruby client shared library"),
         .fuzz = b.step("fuzz", "Run non-VOPR fuzzers"),
         .fuzz_build = b.step("fuzz:build", "Build non-VOPR fuzzers"),
         .run = b.step("run", "Run TigerBeetle"),
@@ -261,6 +262,11 @@ pub fn build(b: *std.Build) !void {
         .mode = mode,
     });
     build_node_client(b, build_steps.clients_node, .{
+        .vsr_module = vsr_module,
+        .vsr_options = vsr_options,
+        .mode = mode,
+    });
+    build_ruby_client(b, build_steps.clients_ruby, .{
         .vsr_module = vsr_module,
         .vsr_options = vsr_options,
         .mode = mode,
@@ -1100,6 +1106,20 @@ fn build_node_client(
             "/client.node",
         })).step);
     }
+}
+
+fn build_ruby_client(
+    b: *std.Build,
+    step_clients_ruby: *std.Build.Step,
+    options: struct {
+        vsr_module: *std.Build.Module,
+        vsr_options: *std.Build.Step.Options,
+        mode: Mode,
+    },
+) void {
+    _ = b;
+    _ = step_clients_ruby;
+    _ = options;
 }
 
 fn build_c_client(
